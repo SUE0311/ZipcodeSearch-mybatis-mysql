@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Zipcode">
+	
+	<resultMap id="result" type="Zipcode">
+	    <result property="zipcode" column="ZIPCODE"/>
+	    <result property="sido" column="SIDO"/>
+	    <result property="gugun" column="GUGUN"/>
+	    <result property="dong" column="DONG"/>
+	    <result property="ri" column="RI"/>
+	    <result property="bldg" column="BLDG"/>
+	    <result property="bunji" column="BUNJI"/>
+	    <result property="seq" column="SEQ"/>
+    </resultMap>
+    
+    <select id="getByGugun" parameterType="String" resultMap="result">
+    	SELECT * FROM Zipcode WHERE GUGUN = #{gugun}
+  	</select>
+    
+    <select id="getByDong" parameterType="String" resultMap="result">
+    	SELECT * FROM Zipcode WHERE DONG = #{dong}
+  	</select>
+  	
+  	<select id="getByZipcode" parameterType="String" resultMap="result">
+    	SELECT * FROM Zipcode WHERE ZIPCODE = #{zipcode}
+  	</select>
+   
+</mapper>

@@ -1,0 +1,51 @@
+<개요>
+1. 어플리케이션 명 : Zipcode Search application.
+2. 작성자 : 이지수
+3. 작성일 : 2013.06.28
+
+<소개>
+이것은 우편번호 검색기 어플리케이션입니다. 
+16개 광역시도의 우편번호를 두 가지 방법으로 검색할 수 있습니다. 
+1) 동 / 읍 / 면 / 리
+2) 지번주소가 생각나지 않을 때 : 구 / 군
+
+javax.swing의 컴포넌트를 활용하였습니다. 
+JDBC, MySql, MyBatis 활용법을 공부하기 위해 만들어보았습니다.
+
+<작업 환경>
+Eclipse IDE - Java project
+MySQL
+MyBatis
+
+<테스트 순서 및 방법>
+
+1. 이클립스에 프로젝트를 import 하십시오.
+- mysql, mybatis jar 파일이 lib 폴더에 포함되어 있습니다. 
+
+2. sql 폴더에 있는 script.sql로 테이블을 만드십시오. 
+- SCHEMA는 'jsnote'이고 TABLE은 'Zipcode'입니다. 
+- column은 `ZIPCODE`, `SIDO`, `GUGUN`, `DONG`, 'RI', 'BLDG', 'BUNJI', 'SEQ'입니다.
+
+3. sql 폴더에 있는 zipcode_20130201.csv를 활용하여 데이터를 삽입하여 주십시오.
+ * 우편번호 원본 데이터 출원처 : http://www.zipfinder.co.kr/zipcode/ (우정사업본부)
+ * 제공되는 원본 파일 : zipcode_20130201.txt(구분자 tab), 우편번호 갯수 : 5만개 이상
+- 데이터 삽입 방법은 script.sql의 주석을 확인하여 주십시오.
+
+4. SqlMapConfig.xml의 파일에서 비밀번호를 변경해주십시오. 
+- <property name="password" value="1234"/> -> '1234' 값 변경
+
+5. 메인 test는 test 패키지에 'StartZipcodeSearch.java'를 run하시면 됩니다.
+- '우편번호 검색기'가 뜨면 두 가지 방법으로 검색하여 결과를 출력하실 수 있습니다.
+1) 지번주소(동/읍/리/면)로 검색 : NORTH에 위치
+2) 구/군으로 검색(지번이 생각나지 않을때) : SOUTH에 위치
+3) 검색한 결과를 클리어(지우고)하고 싶을때 
+  (1) "검색 결과 지우기" 버튼 클릭
+  (2) 새로운 검색어 입력시 결과창(textarea) 클리어 됨
+* 콘솔창에서 결과를 확인할 수 있는 TestZipcodeConsole.java 파일도 있습니다. 
+
+* <시/구/군>으로 검색 시 유의사항
+- 우편번호 원본 파일의 일부 광역시도 column 구분이 일관되지 않습니다.
+예) "경기도 부천시"의 경우 "부천시"로만 검색이 안됩니다. 
+    "부천시 소사구"와 같이 "구"의 이름을 붙이면 검색이 가능합니다.
+
+
